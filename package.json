@@ -1,0 +1,17 @@
+{
+  "name": "llm-data-processor",
+  "version": "1.0.0",
+  "description": "Process data files with LLM using prompt templates",
+  "main": "main.ts",
+  "scripts": {
+    "start": "bun run main.ts",
+    "start:full": "bun run main.ts --full",
+    "test": "bun run test.ts",
+    "dev": "bun --watch main.ts",
+    "clean": "rm -rf dist && mkdir dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^24.0.13"
+  }
+}
