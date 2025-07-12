@@ -45,7 +45,7 @@ export async function loadConfig(): Promise<LLMConfig> {
 // 读取提示模板
 export async function loadPromptTemplate(): Promise<string> {
   try {
-    return await fs.readFile('llm.prompt.cfg', 'utf-8');
+    return await fs.readFile('llm_prompt.md', 'utf-8');
   } catch (error) {
     console.error('读取提示模板失败:', error);
     throw error;
