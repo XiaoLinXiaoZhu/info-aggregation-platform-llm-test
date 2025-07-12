@@ -24,7 +24,7 @@ async function test() {
     
     console.log('🔄 开始测试处理...');
     const results = await processDataFile(testFile, template, config, {
-      maxItems: 16,
+      maxItems: 2,
       delayMs: 2000,
       saveIndividually: false
     });

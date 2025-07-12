@@ -3,3 +3,4 @@ llm.config.json
 data/**/*
 # Ignore all files in the dist directory
 dist/**/*
+dist/test_results.json
