@@ -1,1 +1,5 @@
 llm.config.json
+# Ignore all files in the data directory
+data/**/*
+# Ignore all files in the dist directory
+dist/**/*
