@@ -32,7 +32,7 @@ async function main() {
     }
     
     // 批量处理所有文件
-    const allResults = await processAllFiles(jsonFiles, template, config, {
+    const { results: allResults, overallStats } = await processAllFiles(jsonFiles, template, config, {
       maxItemsPerFile,
       delayMs: 1000,
       saveIndividually: true
@@ -44,7 +44,14 @@ async function main() {
       await saveProcessedResults(allResults, 'dist', summaryFileName);
     }
     
-    console.log(`🎉 处理完成！总共处理了 ${allResults.length} 个项目`);
+    console.log(`\n� === 最终处理报告 ===`);
+    console.log(`📊 总项目数: ${overallStats.totalItems.toLocaleString()}`);
+    console.log(`✅ 成功处理: ${overallStats.successItems.toLocaleString()} 个`);
+    console.log(`❌ 失败项目: ${overallStats.failedItems.toLocaleString()} 个`);
+    console.log(`📈 成功率: ${((overallStats.successItems / overallStats.totalItems) * 100).toFixed(1)}%`);
+    console.log(`📝 总输入字符数: ${overallStats.totalInputChars.toLocaleString()}`);
+    console.log(`📤 总输出字符数: ${overallStats.totalOutputChars.toLocaleString()}`);
+    console.log(`⏱️  总耗时: ${(overallStats.totalDuration / 1000 / 60).toFixed(2)} 分钟`);
     console.log(`📁 结果保存在 dist 目录下`);
     
   } catch (error) {

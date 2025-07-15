@@ -31,6 +31,19 @@ export interface ProcessedItem {
   };
 }
 
+// 统计信息接口
+export interface ProcessStats {
+  totalItems: number;
+  successItems: number;
+  failedItems: number;
+  totalInputChars: number;
+  totalOutputChars: number;
+  totalDuration: number;
+  averageResponseTime: number;
+  startTime: number;
+  endTime: number;
+}
+
 // 读取配置文件
 export async function loadConfig(): Promise<LLMConfig> {
   try {

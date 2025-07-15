@@ -23,7 +23,7 @@ async function test() {
     console.log(`✓ 使用测试文件: ${testFile}`);
     
     console.log('🔄 开始测试处理...');
-    const results = await processDataFile(testFile, template, config, {
+    const { results, stats } = await processDataFile(testFile, template, config, {
       maxItems: 4,
       delayMs: 2000,
       saveIndividually: false
@@ -32,7 +32,16 @@ async function test() {
     if (results.length > 0) {
       await saveProcessedResults(results, 'dist', 'test_results.json');
       
-      console.log('\n📊 测试结果摘要:');
+      console.log('\n📊 测试统计报告:');
+      console.log(`📈 处理项目数: ${stats.totalItems}`);
+      console.log(`✅ 成功: ${stats.successItems} 个`);
+      console.log(`❌ 失败: ${stats.failedItems} 个`);
+      console.log(`📝 总输入字符数: ${stats.totalInputChars.toLocaleString()}`);
+      console.log(`📤 总输出字符数: ${stats.totalOutputChars.toLocaleString()}`);
+      console.log(`⏱️  总耗时: ${(stats.totalDuration / 1000).toFixed(2)} 秒`);
+      console.log(`⚡ 平均每项耗时: ${(stats.totalDuration / stats.totalItems / 1000).toFixed(2)} 秒`);
+      
+      console.log('\n📊 处理结果详情:');
       results.forEach((item, index) => {
         console.log(`${index + 1}. 标题: ${item.original.title?.substring(0, 50)}...`);
         console.log(`   响应长度: ${item.reply.context.length} 字符`);
