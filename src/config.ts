@@ -5,6 +5,7 @@ export interface LLMConfig {
   model: string;
   base_url: string;
   api_key: string;
+  batch_size?: number;
 }
 
 export interface DataItem {
@@ -31,6 +32,19 @@ export interface ProcessedItem {
   };
 }
 
+// 批次统计信息接口  
+export interface BatchStats {
+  batchId: number;
+  batchSize: number;
+  duration: number;
+  successCount: number;
+  failedCount: number;
+  totalInputChars: number;
+  totalOutputChars: number;
+  startTime: number;
+  endTime: number;
+}
+
 // 统计信息接口
 export interface ProcessStats {
   totalItems: number;
@@ -42,6 +56,8 @@ export interface ProcessStats {
   averageResponseTime: number;
   startTime: number;
   endTime: number;
+  batchStats?: BatchStats[];
+  isConcurrent?: boolean;
 }
 
 // 读取配置文件
